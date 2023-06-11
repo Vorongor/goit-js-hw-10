@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     catInfo.innerHTML = '';
 
     const breedName = document.createElement('h2');
-    breedName.textContent = `Breed: ${cat.breed}`;
+    breedName.textContent = `Breed: ${cat.breedName}`;
     breedName.classList.add('breed-name');
 
     const description = document.createElement('p');
