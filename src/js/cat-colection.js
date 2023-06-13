@@ -8,12 +8,13 @@ export function fetchBreeds() {
       'x-api-key':apiKey,
     }
   })
-    .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch breeds');
+    }
+    return response.json();
+  })
     .then(data => data.map(breed => ({ id: breed.id, name: breed.name })))
-    .catch(error => {
-      console.error('Помилка при отриманні списку порід:', error);
-      throw error;
-    });
 }
 
 export function fetchCatByBreed(breedId) {
@@ -24,7 +25,12 @@ export function fetchCatByBreed(breedId) {
       'x-api-key': apiKey
     }
   })
-    .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch breeds');
+    }
+    return response.json();
+  })
     .then(data => {
       if (data.length > 0) {
         const cat = data[0];
@@ -38,8 +44,4 @@ export function fetchCatByBreed(breedId) {
         throw new Error('Кота з такою породою не знайдено.');
       }
     })
-    .catch(error => {
-      console.error('Помилка при отриманні інформації про кота:', error);
-      throw error;
-    });
 }
